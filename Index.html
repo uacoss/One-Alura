@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+	<html>
+	   <head>
+	   		<meta charset="UTP-8">
+	   		<meta name="viewport" content="width=device-width, initial-scale=1">
+	   		<title>Encriptador/Desencriptador</title>
+	   		<link rel="stylesheet" href="style.css">
+	   </head>
+	   <body>
+	   	   <header>
+	   	 	<img class="logo" src="imagenes/logo.png" alt="logo">
+	   	   </header>
+
+	   	   <main>
+	   	   	
+	   	   		<section class="seccion1">
+	   	   			<div class="contenedor-cajatexto">
+	   	   				<textarea placeholder="  Ingrese el texto aqui" id="cajatexto"></textarea>
+	   	   			</div>
+
+	   	   			<div class="alerta">
+	   	   				<p>&#33 Solo letras minusculas y sin comillas</p>
+	   	   			</div>
+
+	   	   			<div class="contenedor-botones">
+	   	   				<input type="button" class="btn-enc" value="Encriptar" >
+	   	   				<input type="button" class="btn-desenc" value="Desencriptar">
+	   	   			</div>
+	   	   		</section>
+
+	   	   		<section class="seccion2">
+
+	   	   			
+	   	   			<div id="imagen"> 
+	   	   				<div class="munheco">
+	   	   			      <img src="imagenes/munheco.png"  alt="munheco">
+	   	   			    </div>
+
+	   	   			    <div  class="contenedor-parrafo">
+	   	   				   <h3>Ningun mensaje fue <br> encontrado</h3>
+	   	   				    <p>Ingresa el texto a configurar<p>
+	   	   			    </div>
+                    </div>
+
+	   	   			<div class="contenedor-copiar">
+	   	   				<input type="button" id="btn-copiar" class="hide" value="Copiar">
+
+	   	   			</div>
+
+	   	   			<div class="contenedor-resultado">
+	   	   				<textarea id="texto-resultado"  readonly style></textarea>
+	   	   				
+	   	   			</div>
+	   	   			
+	   	   		</section>
+	   	   </main>
+		   <footer class="pie">	By Uacoss</footer>			   	   
+
+	   </body>
+
+	   <script>
+		
+
+		btnDesenc= document.querySelector(".btn-desenc");
+		btnEnc= document.querySelector(".btn-enc");
+		btnCopy= document.querySelector(".contenedor-copiar");
+	
+
+		btnDesenc.onclick= DesEncriptar;
+		btnEnc.onclick= Encriptar;
+		btnCopy.onclick= copytext;
+
+
+		function copytext() {
+			 var textcopy= document.getElementById('texto-resultado');
+			 textcopy.select();
+			 textcopy.setSelectionRange(0, 99999);
+			 document.execCommand('copy');
+		}
+		
+
+
+		function ocultar(){
+			document.getElementById('imagen').style.display = 'none';
+			document.getElementById('btn-copiar').style.display = 'block';
+			document.getElementById('texto-resultado').style.backgroundColor = "transparent"
+		}
+
+		function mostrar(){
+			
+			document.getElementById('texto-resultado').style.backgroundColor = "transparent"
+		}
+
+
+		function DesEncriptar(){
+
+			    var escritodes = document.getElementById('cajatexto').value;
+			    var checkpoint = escritodes.includes("enter") || escritodes.includes("imes") || escritodes.includes("ai") || escritodes.includes("ober") || escritodes.includes("ufat");
+				    if (escritodes.length == 0){
+				    	mostrar()
+				    }
+					    if (checkpoint == true ) {
+						    	res = escritodes.replace(/enter/g, "e").replace(/imes/g, "i").replace(/ai/g, "a").replace(/ober/g, "o").replace(/ufat/g,"u");
+						        document.getElementById('texto-resultado').innerHTML= res
+						        document.getElementById('cajatexto').value='';
+						        ocultar()
+						        }
+						           else{
+				
+						       	        document.getElementById('cajatexto').value='';
+						       	        document.getElementById('texto-resultado').value='';
+						         	    mostrar()
+						         	    window.location.reload()
+						               }
+			}
+		
+
+			function Encriptar(){
+
+			        var escrito = document.getElementById('cajatexto').value;
+			        var checkpoint = escrito.includes("e") || escrito.includes("i") || escrito.includes("a") || escrito.includes("o") || escrito.includes("u");
+					     if (escrito.length == 0){
+						    	mostrar()
+						    }
+						    if (checkpoint == true ) {
+							    	 res = escrito.replace(/e/g, "enter").replace(/i/g, "imes").replace(/a/g, "ai").replace(/o/g, "ober").replace(/u/g,"ufat");
+							         document.getElementById('texto-resultado').innerHTML= res
+							         document.getElementById('cajatexto').value='';
+							         ocultar()
+							         }
+							       else{
+							       	    
+							       	    document.getElementById('cajatexto').value='';
+							       	    document.getElementById('texto-resultado').value='';
+										mostrar()
+										window.location.reload()
+					                   }
+				    }
+			
+
+
+	  
+	   </script>
+	   	
+	</html>
+
+	
+	   		
